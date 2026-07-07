@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Booking Laundry</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <div class="logo">
+            <div class="logo-brand">
+                <img src="https://cdn-icons-png.flaticon.com/512/3003/3003984.png" alt="Laundry" class="logo-img">
+                <div class="logo-text">
+                    LaundryKu
+                    <span> Sistem Pengelolaan Laundry</span>
+                </div>
+            </div>
+        </div>
+
+        <nav class="nav flex-column">
+
+            <a class="nav-link" href="index.html">
+                <i class="fa fa-house me-2"></i>Dashboard
+            </a>
+
+            <a class="nav-link" href="persediaanbahan.html">
+                <i class="fa fa-warehouse me-2"></i>Persediaan Bahan
+            </a>
+
+            <a class="nav-link active" href="pesanan.html">
+                <i class="fa fa-basket-shopping me-2"></i>Pesanan Laundry
+            </a>
+
+            <a class="nav-link" href="proses.html">
+                <i class="fa fa-clipboard me-2"></i>Proses Laundry
+            </a>
+
+            <a class="nav-link" href="tenagakerja.html">
+                <i class="fa fa-user-tie me-2"></i>Tenaga Kerja
+            </a>
+
+            <a class="nav-link" href="operasional.html">
+                <i class="fa fa-cogs me-2"></i>Operasional
+            </a>
+
+            <a class="nav-link" href="laporan.html">
+                <i class="fa fa-file-lines me-2"></i>Laporan Laundry
+            </a>
+
+            <a class="nav-link text-danger" href="logout.html">
+                <i class="fa fa-right-from-bracket me-2"></i>Logout
+            </a>
+
+        </nav>
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <!-- HEADER -->
+        <div class="dashboard-header">
+            <div class="header-left">
+                <div class="dashboard-title">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="notification">
+                    <i class="fa-solid fa-bell"></i>
+                    <span>3</span>
+                </div>
+                <div class="d-flex align-items-center ms-3">
+                    <div class="text-end me-2">
+                        <div class="fw-bold">Julia Nabella</div>
+                        <small class="text-muted d-block" style="margin-top: -4px;">Admin</small>
+                    </div>
+                    <i class="fa-solid fa-circle-user fa-2x text-success"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-box">
+
+            <div class="booking-header mb-4">
+                <h3 class="booking-title">
+                    <i class="fa fa-basket-shopping me-2 text-success"></i>
+                    Pesanan LaundryKu
+                </h3>
+                <p class="booking-subtitle">Pesan layanan laundry dengan mudah dan cepat</p>
+            </div>
+
+            <form id="bookingForm">
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Nama</label>
+                        <input type="text"
+                            id="nama"
+                            class="form-control"
+                            placeholder="Masukkan nama">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Nomor HP</label>
+                        <input type="text"
+                            id="hp"
+                            class="form-control"
+                            placeholder="08xxxxxxxxxx">
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Tanggal Pesanan</label>
+                        <input type="date"
+                            id="tanggal"
+                            class="form-control">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Layanan</label>
+
+                        <select id="layanan" class="form-select">
+                            <option value="8000">Cuci Kering</option>
+                            <option value="10000">Cuci Setrika</option>
+                            <option value="5000">Setrika Saja</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Berat (Kg)</label>
+
+                        <input type="number"
+                            id="berat"
+                            class="form-control"
+                            placeholder="0">
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Total Bayar</label>
+
+                        <input type="text"
+                            id="total"
+                            class="form-control"
+                            readonly>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Status Pembayaran</label>
+
+                        <select id="statusPembayaran" class="form-select">
+                            <option value="Lunas">Lunas</option>
+                            <option value="Belum Lunas">Belum Lunas</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        
+    <label class="form-label">Status Laundry</label>
+
+    <select id="statusLaundry" class="form-select">
+
+        <option value="Pesanan Baru">Pesanan Baru</option>
+
+        <option value="Menunggu Penjemputan">Menunggu Penjemputan</option>
+
+        <option value="Diterima">Diterima</option>
+
+        <option value="Proses Pencucian">Proses Pencucian</option>
+
+        <option value="Proses Pengeringan">Proses Pengeringan</option>
+
+        <option value="Proses Setrika">Proses Setrika</option>
+
+        <option value="Proses Packing">Proses Packing</option>
+
+        <option value="Selesai">Selesai</option>
+
+        <option value="Siap Diambil">Siap Diambil</option>
+
+        <option value="Dalam Pengantaran">Dalam Pengantaran</option>
+
+        <option value="Sudah Diambil/Diterima">Sudah Diambil/Diterima</option>
+
+        <option value="Dibatalkan">Dibatalkan</option>
+
+    </select>
+</div>
+
+                </div>
+
+                <button type="button"
+                    class="btn btn-success"
+                    onclick="simpanBooking()">
+
+                    <i class="fa fa-save me-2"></i>
+                    Simpan Pesanan
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <div class="content-box">
+
+            <h5 class="mb-3">Data Pesanan Laundry</h5>
+
+            <div class="table-responsive-box">
+            <table class="table table-striped">
+                <thead class="table-light">
+            <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>No HP</th>
+                <th>Tanggal</th>
+                <th>Layanan</th>
+                <th>Berat</th>
+                <th>Total</th>
+                <th>Pembayaran</th>
+                <th>Status Laundry</th>
+                <th>Aksi</th>
+            </tr>
+            </thead>
+
+                <tbody id="bookingTable">
+
+                    
+                    <tr>
+                        <td>1</td>
+                        <td>Budi Santoso</td>
+                        <td>082345678901</td>
+                        <td>2026-06-08</td>
+                        <td>Cuci Kering</td>
+                        <td>5 Kg</td>
+                        <td>Rp 50.000</td>
+                        <td><span class="badge bg-success">Lunas</span></td>
+                        <td><span class="badge bg-primary">Pesanan Baru</span></td>
+                        <td class="d-flex gap-2">
+                            <button class="btn btn-primary btn-sm" onclick="editBooking(this)"><i class="fa fa-edit"></i></button>
+                            <button class="btn btn-danger btn-sm" onclick="hapusBooking(this)"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-success btn-sm" onclick="togglePembayaran(this)"><i class="fa fa-wallet"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Siti Aisyah</td>
+                        <td>082345678901</td>
+                        <td>2026-06-08</td>
+                        <td>Cuci Kering</td>
+                        <td>3 Kg</td>
+                        <td>Rp 24.000</td>
+                        <td><span class="badge bg-success">Lunas</span></td>
+                        <td><span class="badge bg-primary">Pesanan Baru</span></td>
+                        <td class="d-flex gap-2">
+                            <button class="btn btn-primary btn-sm" onclick="editBooking(this)"><i class="fa fa-edit"></i></button>
+                            <button class="btn btn-danger btn-sm" onclick="hapusBooking(this)"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-success btn-sm" onclick="togglePembayaran(this)"><i class="fa fa-wallet"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>Ahmad Wijaya</td>
+                        <td>083456789012</td>
+                        <td>2026-06-10</td>
+                        <td>Cuci Setrika</td>
+                        <td>4 Kg</td>
+                        <td>Rp 40.000</td>
+                        <td><span class="badge bg-warning text-dark">Belum Lunas</span></td>
+                        <td><span class="badge bg-primary">Pesanan Baru</span></td>
+                        <td class="d-flex gap-2">
+                            <button class="btn btn-primary btn-sm" onclick="editBooking(this)"><i class="fa fa-edit"></i></button>
+                            <button class="btn btn-danger btn-sm" onclick="hapusBooking(this)"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-success btn-sm" onclick="togglePembayaran(this)"><i class="fa fa-wallet"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td>Nur Hidayah</td>
+                        <td>084567890123</td>
+                        <td>2026-06-07</td>
+                        <td>Setrika Saja</td>
+                        <td>6 Kg</td>
+                        <td>Rp 30.000</td>
+                        <td><span class="badge bg-success">Lunas</span></td>
+                        <td><span class="badge bg-primary">Pesanan Baru</span></td>
+                        <td class="d-flex gap-2">
+                            <button class="btn btn-primary btn-sm" onclick="editBooking(this)"><i class="fa fa-edit"></i></button>
+                            <button class="btn btn-danger btn-sm" onclick="hapusBooking(this)"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-success btn-sm" onclick="togglePembayaran(this)"><i class="fa fa-wallet"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>5</td>
+                        <td>Rini Kusuma</td>
+                        <td>085678901234</td>
+                        <td>2026-06-06</td>
+                        <td>Cuci Kering</td>
+                        <td>2 Kg</td>
+                        <td>Rp 16.000</td>
+                        <td><span class="badge bg-success">Lunas</span></td>
+                        <td><span class="badge bg-primary">Pesanan Baru</span></td>
+                        <td class="d-flex gap-2">
+                            <button class="btn btn-primary btn-sm" onclick="editBooking(this)"><i class="fa fa-edit"></i></button>
+                            <button class="btn btn-danger btn-sm" onclick="hapusBooking(this)"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-success btn-sm" onclick="togglePembayaran(this)"><i class="fa fa-wallet"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>6</td>
+                        <td>Hendra Suryanto</td>
+                        <td>086789012345</td>
+                        <td>2026-06-11</td>
+                        <td>Cuci Setrika</td>
+                        <td>7 Kg</td>
+                        <td>Rp 70.000</td>
+                        <td><span class="badge bg-warning text-dark">Belum Lunas</span></td>
+                        <td><span class="badge bg-primary">Pesanan Baru</span></td>
+                        <td class="d-flex gap-2">
+                            <button class="btn btn-primary btn-sm" onclick="editBooking(this)"><i class="fa fa-edit"></i></button>
+                            <button class="btn btn-danger btn-sm" onclick="hapusBooking(this)"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-success btn-sm" onclick="togglePembayaran(this)"><i class="fa fa-wallet"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>7</td>
+                        <td>Dewi Lestari</td>
+                        <td>087890123456</td>
+                        <td>2026-06-10</td>
+                        <td>Cuci Kering</td>
+                        <td>4 Kg</td>
+                        <td>Rp 32.000</td>
+                        <td><span class="badge bg-success">Lunas</span></td>
+                        <td><span class="badge bg-primary">Pesanan Baru</span></td>
+                        <td class="d-flex gap-2">
+                            <button class="btn btn-primary btn-sm" onclick="editBooking(this)"><i class="fa fa-edit"></i></button>
+                            <button class="btn btn-danger btn-sm" onclick="hapusBooking(this)"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-success btn-sm" onclick="togglePembayaran(this)"><i class="fa fa-wallet"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>8</td>
+                        <td>Bambang Setiawan</td>
+                        <td>088901234567</td>
+                        <td>2026-06-09</td>
+                        <td>Setrika Saja</td>
+                        <td>5 Kg</td>
+                        <td>Rp 25.000</td>
+                        <td><span class="badge bg-warning text-dark">Belum Lunas</span></td>
+                        <td><span class="badge bg-primary">Pesanan Baru</span></td>
+                        <td class="d-flex gap-2">
+                            <button class="btn btn-primary btn-sm" onclick="editBooking(this)"><i class="fa fa-edit"></i></button>
+                            <button class="btn btn-danger btn-sm" onclick="hapusBooking(this)"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-success btn-sm" onclick="togglePembayaran(this)"><i class="fa fa-wallet"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>9</td>
+                        <td>Endang Setyawan</td>
+                        <td>089012345678</td>
+                        <td>2026-06-08</td>
+                        <td>Cuci Setrika</td>
+                        <td>3 Kg</td>
+                        <td>Rp 30.000</td>
+                        <td><span class="badge bg-success">Lunas</span></td>
+                        <td><span class="badge bg-primary">Pesanan Baru</span></td>
+                        <td class="d-flex gap-2">
+                            <button class="btn btn-primary btn-sm" onclick="editBooking(this)"><i class="fa fa-edit"></i></button>
+                            <button class="btn btn-danger btn-sm" onclick="hapusBooking(this)"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-success btn-sm" onclick="togglePembayaran(this)"><i class="fa fa-wallet"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>10</td>
+                        <td>Citra Dewi</td>
+                        <td>080123456789</td>
+                        <td>2026-06-11</td>
+                        <td>Cuci Kering</td>
+                        <td>6 Kg</td>
+                        <td>Rp 48.000</td>
+                        <td><span class="badge bg-success">Lunas</span></td>
+                        <td><span class="badge bg-primary">Pesanan Baru</span></td>
+                        <td class="d-flex gap-2">
+                            <button class="btn btn-primary btn-sm" onclick="editBooking(this)"><i class="fa fa-edit"></i></button>
+                            <button class="btn btn-danger btn-sm" onclick="hapusBooking(this)"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-success btn-sm" onclick="togglePembayaran(this)"><i class="fa fa-wallet"></i></button>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        let nomor = 11;
+        let editRowTarget = null;
+
+        document.getElementById("berat").addEventListener("input", hitungTotal);
+        document.getElementById("layanan").addEventListener("change", hitungTotal);
+
+        function hitungTotal() {
+            let harga = document.getElementById("layanan").value;
+            let berat = document.getElementById("berat").value || 0;
+            let total = harga * berat;
+            document.getElementById("total").value = total ? "Rp " + total.toLocaleString("id-ID") : "";
+        }
+
+        function simpanBooking() {
+
+    const nama = document.getElementById("nama").value;
+    const hp = document.getElementById("hp").value;
+    const tanggal = document.getElementById("tanggal").value;
+
+    const layanan =
+    document.getElementById("layanan")
+    .options[
+        document.getElementById("layanan")
+        .selectedIndex
+    ].text;
+
+    const berat =
+    document.getElementById("berat").value;
+
+    const total =
+    document.getElementById("total").value || "Rp 0";
+
+    const status =
+    document.getElementById("statusPembayaran")
+    .value;
+
+    const statusLaundry =
+    document.getElementById("statusLaundry")
+    .value;
+
+    if (
+        nama === "" ||
+        hp === "" ||
+        tanggal === "" ||
+        berat === ""
+    ){
+        alert("Lengkapi data terlebih dahulu!");
+        return;
+    }
+
+    const badgeClass =
+    status === "Lunas"
+    ? "bg-success"
+    : "bg-warning text-dark";
+
+    const table =
+    document.getElementById("bookingTable");
+
+    const row = table.insertRow();
+
+    row.innerHTML = `
+    <td>${nomor++}</td>
+    <td>${nama}</td>
+    <td>${hp}</td>
+    <td>${tanggal}</td>
+    <td>${layanan}</td>
+    <td>${berat} Kg</td>
+    <td>${total}</td>
+
+    <td>
+        <span class="badge ${badgeClass}">
+            ${status}
+        </span>
+    </td>
+
+    <td>
+        <span class="badge bg-primary">
+            ${statusLaundry}
+        </span>
+    </td>
+
+    <td class="d-flex gap-2">
+
+        <button class="btn btn-primary btn-sm"
+        onclick="editBooking(this)">
+            <i class="fa fa-edit"></i>
+        </button>
+
+        <button class="btn btn-danger btn-sm"
+        onclick="hapusBooking(this)">
+            <i class="fa fa-trash"></i>
+        </button>
+
+        <button class="btn btn-success btn-sm"
+        onclick="togglePembayaran(this)">
+            <i class="fa fa-wallet"></i>
+        </button>
+
+    </td>
+`;
+
+    const bookings =
+    JSON.parse(
+        localStorage.getItem("bookings")
+    ) || [];
+
+    bookings.push({
+        nama,
+        hp,
+        tanggal,
+        layanan,
+        berat,
+        total,
+        statusPembayaran: status,
+        statusLaundry
+    });
+
+    localStorage.setItem(
+        "bookings",
+        JSON.stringify(bookings)
+    );
+
+    alert("Booking berhasil ditambahkan!");
+
+    document.getElementById("bookingForm")
+    .reset();
+
+    document.getElementById("total")
+    .value = "";
+}
+         
+
+        function editBooking(btn) {
+            const row = btn.closest('tr');
+            editRowTarget = row;
+            const cells = row.querySelectorAll('td');
+            document.getElementById('nama').value = cells[1].textContent;
+            document.getElementById('hp').value = cells[2].textContent;
+            document.getElementById('tanggal').value = cells[3].textContent;
+            // set layanan select by matching text
+            const layananText = cells[4].textContent.trim();
+            const layananSelect = document.getElementById('layanan');
+            for (let i = 0; i < layananSelect.options.length; i++) {
+                if (layananSelect.options[i].text === layananText) {
+                    layananSelect.selectedIndex = i; break;
+                }
+            }
+            const beratText = cells[5].textContent.replace(' Kg','').trim();
+            document.getElementById('berat').value = beratText;
+            document.getElementById('total').value = cells[6].textContent;
+            // set payment status select
+            const statusText = cells[7].textContent.trim();
+            const statusSelect = document.getElementById('statusPembayaran');
+            for (let i = 0; i < statusSelect.options.length; i++) {
+                if (statusSelect.options[i].value === statusText || statusSelect.options[i].text === statusText) {
+                    statusSelect.selectedIndex = i; break;
+                }
+            }
+            window.scrollTo({top:0, behavior:'smooth'});
+        }
+
+        function hapusBooking(btn) {
+            if (confirm('Hapus data booking ini?')) {
+                btn.closest('tr').remove();
+            }
+        }
+
+        function togglePembayaran(btn) {
+            const row = btn.closest('tr');
+            const statusCell = row.querySelectorAll('td')[7];
+            const current = statusCell.textContent.trim();
+            if (current === 'Lunas') {
+                statusCell.innerHTML = '<span class="badge bg-warning text-dark">Belum Lunas</span>';
+            } else {
+                statusCell.innerHTML = '<span class="badge bg-success">Lunas</span>';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,499 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tenaga Kerja Laundry</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+
+    <div class="logo">
+        <div class="logo-brand">
+            <img src="https://cdn-icons-png.flaticon.com/512/3003/3003984.png" alt="Laundry" class="logo-img">
+            <div class="logo-text">
+                LaundryKu
+                <span>Sistem Pengelolaan Laundry</span>
+            </div>
+        </div>
+    </div>
+
+    <nav class="nav flex-column">
+
+        <a class="nav-link" href="index.html">
+            <i class="fa fa-house me-2"></i>Dashboard
+        </a>
+
+        <a class="nav-link" href="persediaanbahan.html">
+            <i class="fa fa-warehouse me-2"></i>Persediaan Bahan
+        </a>
+
+        <a class="nav-link" href="pesanan.html">
+            <i class="fa fa-basket-shopping me-2"></i>Pesanan Laundry
+        </a>
+
+        <a class="nav-link" href="proses.html">
+            <i class="fa fa-clipboard me-2"></i>Proses Laundry
+        </a>
+
+        <a class="nav-link active" href="tenagakerja.html">
+            <i class="fa fa-user-tie me-2"></i>Tenaga Kerja
+        </a>
+
+        <a class="nav-link" href="operasional.html">
+            <i class="fa fa-cogs me-2"></i>Operasional
+        </a>
+
+
+        <a class="nav-link" href="laporan.html">
+            <i class="fa fa-file-lines me-2"></i>Laporan Laundry
+        </a>
+
+        <a class="nav-link text-danger" href="logout.html">
+            <i class="fa fa-right-from-bracket me-2"></i>Logout
+        </a>
+
+    </nav>
+
+</div>
+
+<!-- Main Content -->
+<div class="main">
+
+    <!-- HEADER -->
+    <div class="dashboard-header d-flex justify-content-between align-items-center mb-4">
+            <div class="dashboard-title">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="notification me-3">
+                    <i class="fa-solid fa-bell"></i>
+                    <span>3</span>
+                </div>
+                <div class="d-flex align-items-center ms-3">
+                    <div class="text-end me-2">
+                        <div class="fw-bold">Julia Nabella</div>
+                        <small class="text-muted d-block" style="margin-top: -4px;">Admin</small>
+                    </div>
+                <i class="fa-solid fa-circle-user fa-2x text-success"></i>
+            </div>
+            </div>
+        </div>
+
+    <div class="content-box">
+
+        <div class="booking-header mb-4">
+            <h3 class="booking-title">
+                <i class="fa fa-user-tie me-2 text-success"></i>
+                Data Karyawan LaundryKu
+            </h3>
+            <p class="booking-subtitle">Kelola data karyawan dan status kerja dengan cepat</p>
+        </div>
+
+        <div class="d-flex justify-content-between mb-3">
+
+            <input type="text"
+                id="cariKaryawan"
+                class="form-control w-50"
+                placeholder="Cari Karyawan..."
+                onkeyup="cariKaryawan()">
+
+            <button
+                class="btn btn-success"
+                data-bs-toggle="modal"
+                data-bs-target="#karyawanModal">
+
+                <i class="fa fa-plus"></i>
+                Tambah Karyawan
+
+            </button>
+
+        </div>
+
+        <table class="table table-hover">
+
+            <thead class="table-light">
+
+                <tr>
+                    <th>No</th>
+                    <th>Nama Karyawan</th>
+                    <th>Jabatan</th>
+                    <th>No HP</th>
+                    <th>Gaji</th>
+                    <th>Jadwal Kerja</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="pegawaiTable">
+
+                <tr>
+                    <td>1</td>
+                    <td>Julia Nabela</td>
+                    <td>Admin/Kasir</td>
+                    <td>085765600807</td>
+                    <td>Rp 4.500.000</td>
+                    <td>Senin-Jumat</td>
+                    <td>
+                        <span class="badge bg-success">
+                            Aktif
+                        </span>
+                    </td>
+                    <td>
+
+                        <button class="btn btn-warning btn-sm"
+                            onclick="editPegawai(this)">
+                            <i class="fa fa-edit"></i>
+                        </button>
+
+                        <button class="btn btn-danger btn-sm"
+                            onclick="hapusPegawai(this)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td>Ana Rohma</td>
+                    <td>Pencuci</td>
+                    <td>081234567890</td>
+                    <td>Rp 3.000.000</td>
+                    <td>Senin-Sabtu</td>
+                    <td>
+                        <span class="badge bg-success">
+                            Aktif
+                        </span>
+                    </td>
+                    <td>
+
+                        <button class="btn btn-warning btn-sm"
+                            onclick="editPegawai(this)">
+                            <i class="fa fa-edit"></i>
+                        </button>
+
+                        <button class="btn btn-danger btn-sm"
+                            onclick="hapusPegawai(this)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td>Siti Nurhaliza</td>
+                    <td>Penyetrika</td>
+                    <td>081345678901</td>
+                    <td>Rp 3.200.000</td>
+                    <td>Senin-Sabtu</td>
+                    <td>
+                        <span class="badge bg-success">
+                            Aktif
+                        </span>
+                    </td>
+                    <td>
+
+                        <button class="btn btn-warning btn-sm"
+                            onclick="editPegawai(this)">
+                            <i class="fa fa-edit"></i>
+                        </button>
+
+                        <button class="btn btn-danger btn-sm"
+                            onclick="hapusPegawai(this)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>4</td>
+                    <td>Ahmad Budi</td>
+                    <td>Kurir/Delivery</td>
+                    <td>081343221234</td>
+                    <td>Rp 3.500.000</td>
+                    <td>Shift Pagi</td>
+                    <td>
+                        <span class="badge bg-success">
+                            Aktif
+                        </span>
+                    </td>
+                    <td>
+
+                        <button class="btn btn-warning btn-sm"
+                            onclick="editPegawai(this)">
+                            <i class="fa fa-edit"></i>
+                        </button>
+
+                        <button class="btn btn-danger btn-sm"
+                            onclick="hapusPegawai(this)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>4</td>
+                    <td>Ali Samsul</td>
+                    <td>Kurir/Delivery</td>
+                    <td>081343221234</td>
+                    <td>Rp 4.500.000</td>
+                    <td>Shift Siang - Sore</td>
+                    <td>
+                        <span class="badge bg-success">
+                            Aktif
+                        </span>
+                    </td>
+                    <td>
+
+                        <button class="btn btn-warning btn-sm"
+                            onclick="editPegawai(this)">
+                            <i class="fa fa-edit"></i>
+                        </button>
+
+                        <button class="btn btn-danger btn-sm"
+                            onclick="hapusPegawai(this)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="pegawaiModal">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5>Tambah Pegawai</h5>
+
+                <button class="btn-close"
+                    data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <input type="text"
+                    id="namaPegawai"
+                    class="form-control mb-3"
+                    placeholder="Nama Pegawai">
+
+                <select
+                    id="jabatanPegawai"
+                    class="form-select mb-3">
+
+                    <option>Pencuci</option>
+                    <option>Penyetrika</option>
+                    <option>Kurir</option>
+                    <option>Admin</option>
+
+                </select>
+
+                <input type="text"
+                    id="hpPegawai"
+                    class="form-control mb-3"
+                    placeholder="Nomor HP">
+
+                <input type="number"
+                    id="gajiPegawai"
+                    class="form-control mb-3"
+                    placeholder="Gaji Bulanan (misal 3500000)">
+
+                <select
+                    id="jadwalPegawai"
+                    class="form-select">
+                    <option>Senin-Jumat</option>
+                    <option>Senin-Sabtu</option>
+                    <option>Shift Pagi</option>
+                    <option>Shift Siang</option>
+                    <option>Shift Malam</option>
+                </select>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+                    Batal
+                </button>
+
+                <button
+                    class="btn btn-success"
+                    onclick="tambahPegawai()">
+                    Simpan
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+let nomorPegawai = 5;
+
+function tambahPegawai(){
+
+    const nama =
+    document.getElementById("namaPegawai").value;
+
+    const jabatan =
+    document.getElementById("jabatanPegawai").value;
+
+    const hp =
+    document.getElementById("hpPegawai").value;
+
+    const gaji =
+    document.getElementById("gajiPegawai").value;
+
+    const jadwal =
+    document.getElementById("jadwalPegawai").value;
+
+    if(nama === "" || hp === "" || gaji === ""){
+        alert("Lengkapi data!");
+        return;
+    }
+
+    const table =
+    document.getElementById("pegawaiTable");
+
+    const row =
+    table.insertRow();
+
+    row.innerHTML = `
+        <td>${nomorPegawai++}</td>
+        <td>${nama}</td>
+        <td>${jabatan}</td>
+        <td>${hp}</td>
+        <td>Rp ${Number(gaji).toLocaleString('id-ID')}</td>
+        <td>${jadwal}</td>
+        <td>
+            <span class="badge bg-success">
+                Aktif
+            </span>
+        </td>
+        <td>
+
+            <button class="btn btn-warning btn-sm"
+            onclick="editPegawai(this)">
+                <i class="fa fa-edit"></i>
+            </button>
+
+            <button class="btn btn-danger btn-sm"
+            onclick="hapusPegawai(this)">
+                <i class="fa fa-trash"></i>
+            </button>
+
+        </td>
+    `;
+
+    document.getElementById("namaPegawai").value = "";
+    document.getElementById("hpPegawai").value = "";
+    document.getElementById("gajiPegawai").value = "";
+    document.getElementById("jadwalPegawai").selectedIndex = 0;
+
+    bootstrap.Modal.getInstance(
+        document.getElementById("pegawaiModal")
+    ).hide();
+}
+
+function hapusPegawai(btn){
+
+    if(confirm("Yakin ingin menghapus pegawai?")){
+
+        btn.closest("tr").remove();
+
+    }
+
+}
+
+function editPegawai(btn){
+
+    const row =
+    btn.closest("tr");
+
+    document.getElementById("namaPegawai").value =
+    row.cells[1].innerText;
+
+    document.getElementById("jabatanPegawai").value =
+    row.cells[2].innerText;
+
+    document.getElementById("hpPegawai").value =
+    row.cells[3].innerText;
+
+    document.getElementById("gajiPegawai").value =
+    row.cells[4].innerText.replace(/[^0-9]/g, '');
+
+    document.getElementById("jadwalPegawai").value =
+    row.cells[5].innerText;
+
+    row.remove();
+
+    bootstrap.Modal.getOrCreateInstance(
+        document.getElementById("pegawaiModal")
+    ).show();
+
+}
+
+function cariPegawai(){
+
+    let input =
+    document.getElementById("cariPegawai")
+    .value.toUpperCase();
+
+    let rows =
+    document.querySelectorAll("#pegawaiTable tr");
+
+    rows.forEach(row => {
+
+        let nama =
+        row.cells[1].innerText.toUpperCase();
+
+        row.style.display =
+        nama.includes(input)
+        ? ""
+        : "none";
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
+```

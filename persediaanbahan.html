@@ -1,0 +1,437 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Persediaan Laundry</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+<body>
+
+<div class="sidebar">
+
+    <div class="logo">
+        <div class="logo-brand">
+            <img src="https://cdn-icons-png.flaticon.com/512/3003/3003984.png" alt="Laundry" class="logo-img">
+            <div class="logo-text">
+                LaundryKu
+                <span>Sistem Pengelolaan Laundry</span>
+            </div>
+        </div>
+    </div>
+
+    <nav class="nav flex-column">
+
+        <a class="nav-link" href="index.html">
+            <i class="fa fa-house me-2"></i>Dashboard
+        </a>
+
+        <a class="nav-link active" href="persediaanbahan.html">
+            <i class="fa fa-warehouse me-2"></i>Persediaan Bahan
+        </a>
+
+        <a class="nav-link" href="pesanan.html">
+            <i class="fa fa-basket-shopping me-2"></i>Pesanan Laundry
+        </a>
+
+        <a class="nav-link" href="proses.html">
+            <i class="fa fa-clipboard me-2"></i>Proses Laundry
+        </a>
+
+        <a class="nav-link" href="tenagakerja.html">
+            <i class="fa fa-user-tie me-2"></i>Tenaga Kerja
+        </a>
+
+        <a class="nav-link" href="operasional.html">
+            <i class="fa fa-cogs me-2"></i>Operasional
+        </a>
+
+        <a class="nav-link" href="laporan.html">
+            <i class="fa fa-file-lines me-2"></i>Laporan Laundry
+        </a>
+
+        <a class="nav-link text-danger" href="logout.html">
+            <i class="fa fa-right-from-bracket me-2"></i>Logout
+        </a>
+
+    </nav>
+
+</div>
+
+<div class="main">
+
+    <!-- HEADER -->
+    <div class="dashboard-header">
+        <div class="header-left">
+            <div class="dashboard-title">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+        <div class="header-right">
+        <div class="notification">
+            <i class="fa-solid fa-bell"></i>
+            <span>3</span>
+        </div>
+        <div class="d-flex align-items-center ms-3">
+            <div class="text-end me-2">
+                <div class="fw-bold">Julia Nabella</div>
+                <small class="text-muted d-block" style="margin-top: -4px;">Admin</small>
+            </div>
+                <i class="fa-solid fa-circle-user fa-2x text-success"></i>
+        </div>
+
+    </div>
+    </div>
+
+    <div class="content-box">
+
+        <div class="persediaan-header mb-4">
+            <h3 class="persediaan-title">
+                <i class="fa fa-warehouse me-2 text-success"></i>
+                Persediaan Bahan Kimia LaundryKu
+            </h3>
+            <p class="persediaan-subtitle">Kelola dan pantau stok bahan kimia laundry Anda</p>
+        </div>
+
+        <div class="d-flex justify-content-between mb-3">
+
+            <input
+                type="text"
+                id="cariBarang"
+                class="form-control w-50"
+                placeholder="Cari persediaan..."
+                onkeyup="cariPersediaan()">
+
+            <button
+                class="btn btn-success"
+                data-bs-toggle="modal"
+                data-bs-target="#persediaanModal">
+
+                <i class="fa fa-plus"></i>
+                Tambah Persediaan
+
+            </button>
+
+        </div>
+
+        <table class="table table-hover">
+
+            <thead class="table-light">
+
+                <tr>
+                    <th>No</th>
+                    <th>Nama Barang</th>
+                    <th>Stok</th>
+                    <th>Satuan</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="persediaanTable">
+
+                <tr>
+                    <td>1</td>
+                    <td>Deterjen</td>
+                    <td>25</td>
+                    <td>Liter</td>
+                    <td><span class="badge bg-success">Tersedia</span></td>
+                    <td>
+                        <button class="btn btn-warning btn-sm"
+                        onclick="editPersediaan(this)">
+                            <i class="fa fa-edit"></i>
+                        </button>
+
+                        <button class="btn btn-danger btn-sm"
+                        onclick="hapusPersediaan(this)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td>Pewangi & Pelembut</td>
+                    <td>30</td>
+                    <td>Liter</td>
+                    <td><span class="badge bg-success">Tersedia</span></td>
+                    <td>
+                        <button class="btn btn-warning btn-sm"
+                        onclick="editPersediaan(this)">
+                            <i class="fa fa-edit"></i>
+                        </button>
+
+                        <button class="btn btn-danger btn-sm"
+                        onclick="hapusPersediaan(this)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td>Plastik Packing</td>
+                    <td>50</td>
+                    <td>Pcs</td>
+                    <td><span class="badge bg-success">Tersedia</span></td>
+                    <td>
+                        <button class="btn btn-warning btn-sm"
+                        onclick="editPersediaan(this)">
+                            <i class="fa fa-edit"></i>
+                        </button>
+
+                        <button class="btn btn-danger btn-sm"
+                        onclick="hapusPersediaan(this)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>4</td>
+                    <td>Pelicin Setrika</td>
+                    <td>50</td>
+                    <td>Liter</td>
+                    <td><span class="badge bg-success">Tersedia</span></td>
+                    <td>
+                        <button class="btn btn-warning btn-sm"
+                        onclick="editPersediaan(this)">
+                            <i class="fa fa-edit"></i>
+                        </button>
+
+                        <button class="btn btn-danger btn-sm"
+                        onclick="hapusPersediaan(this)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>5</td>
+                    <td>Penghilang Noda</td>
+                    <td>10</td>
+                    <td>Liter</td>
+                    <td><span class="badge bg-success">Tersedia</span></td>
+                    <td>
+                        <button class="btn btn-warning btn-sm"
+                        onclick="editPersediaan(this)">
+                            <i class="fa fa-edit"></i>
+                        </button>
+
+                        <button class="btn btn-danger btn-sm"
+                        onclick="hapusPersediaan(this)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>6</td>
+                    <td>Hanger</td>
+                    <td>5</td>
+                    <td>Pcs</td>
+                    <td><span class="badge bg-danger">Hampir Habis</span></td>
+                    <td>
+                        <button class="btn btn-warning btn-sm"
+                        onclick="editPersediaan(this)">
+                            <i class="fa fa-edit"></i>
+                        </button>
+
+                        <button class="btn btn-danger btn-sm"
+                        onclick="hapusPersediaan(this)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>7</td>
+                    <td>Pemutih</td>
+                    <td>3</td>
+                    <td>Liter</td>
+                    <td><span class="badge bg-danger">Hampir Habis</span></td>
+                    <td>
+                        <button class="btn btn-warning btn-sm"
+                        onclick="editPersediaan(this)">
+                            <i class="fa fa-edit"></i>
+                        </button>
+
+                        <button class="btn btn-danger btn-sm"
+                        onclick="hapusPersediaan(this)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>8</td>
+                    <td>Lakban & Tag Gun</td>
+                    <td>50</td>
+                    <td>Pcs</td>
+                    <td><span class="badge bg-danger">Hampir Habis</span></td>
+                    <td>
+                        <button class="btn btn-warning btn-sm"
+                        onclick="editPersediaan(this)">
+                            <i class="fa fa-edit"></i>
+                        </button>
+
+                        <button class="btn btn-danger btn-sm"
+                        onclick="hapusPersediaan(this)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<div class="modal fade" id="persediaanModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5>Tambah Persediaan</h5>
+                <button class="btn-close"
+                data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <input type="text"
+                id="namaBarang"
+                class="form-control mb-3"
+                placeholder="Nama Barang">
+
+                <input type="number"
+                id="stokBarang"
+                class="form-control mb-3"
+                placeholder="Jumlah Stok">
+
+                <select id="satuanBarang"
+                class="form-select">
+
+                    <option>Liter</option>
+                    <option>Kg</option>
+                    <option>Pcs</option>
+
+                </select>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button class="btn btn-secondary"
+                data-bs-dismiss="modal">
+                    Batal
+                </button>
+
+                <button class="btn btn-success"
+                onclick="tambahPersediaan()">
+                    Simpan
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+let nomor = 6;
+
+function tambahPersediaan(){
+
+    const nama=document.getElementById("namaBarang").value;
+    const stok=document.getElementById("stokBarang").value;
+    const satuan=document.getElementById("satuanBarang").value;
+
+    if(nama===""||stok===""){
+        alert("Lengkapi data!");
+        return;
+    }
+
+    let status=stok<=5
+    ?'<span class="badge bg-danger">Hampir Habis</span>'
+    :'<span class="badge bg-success">Tersedia</span>';
+
+    document.getElementById("persediaanTable").innerHTML += `
+    <tr>
+        <td>${nomor++}</td>
+        <td>${nama}</td>
+        <td>${stok}</td>
+        <td>${satuan}</td>
+        <td>${status}</td>
+        <td>
+            <button class="btn btn-warning btn-sm" onclick="editPersediaan(this)">
+                <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-danger btn-sm" onclick="hapusPersediaan(this)">
+                <i class="fa fa-trash"></i>
+            </button>
+        </td>
+    </tr>`;
+}
+
+function hapusPersediaan(btn){
+    if(confirm("Yakin ingin menghapus data?")){
+        btn.closest("tr").remove();
+    }
+}
+
+function editPersediaan(btn){
+
+    let row=btn.closest("tr");
+
+    document.getElementById("namaBarang").value=row.cells[1].innerText;
+    document.getElementById("stokBarang").value=row.cells[2].innerText;
+    document.getElementById("satuanBarang").value=row.cells[3].innerText;
+
+    row.remove();
+
+    bootstrap.Modal.getOrCreateInstance(
+    document.getElementById("persediaanModal")
+    ).show();
+}
+
+function cariPersediaan(){
+
+    let input=document.getElementById("cariBarang").value.toUpperCase();
+
+    let tr=document.querySelectorAll("#persediaanTable tr");
+
+    tr.forEach(row=>{
+
+        let nama=row.cells[1].innerText.toUpperCase();
+
+        row.style.display=
+        nama.includes(input)
+        ? ""
+        : "none";
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
+```

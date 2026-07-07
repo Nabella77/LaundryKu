@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Status Laundry</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+	<!-- Sidebar -->
+	<div class="sidebar">
+
+		<div class="logo">
+			<div class="logo-brand">
+				<img src="https://cdn-icons-png.flaticon.com/512/3003/3003984.png" alt="Laundry" class="logo-img">
+				<div class="logo-text">LaundryKu
+					<span>Sistem Pengelolaan Laundry</span>
+				</div>
+			</div>
+		</div>
+
+		<nav class="nav flex-column">
+			<a class="nav-link" href="index.html"><i class="fa fa-house me-2"></i>Dashboard</a>
+			<a class="nav-link" href="persediaanbahan.html"><i class="fa fa-warehouse me-2"></i>Persediaan Bahan</a>
+			<a class="nav-link" href="pesanan.html"><i class="fa fa-basket-shopping me-2"></i>Pesanan Laundry</a>
+			<a class="nav-link active" href="proses.html"><i class="fa fa-clipboard-check me-2"></i>Proses Laundry</a>
+			<a class="nav-link" href="tenagakerja.html"><i class="fa fa-user-tie me-2"></i>Tenaga Kerja</a>
+            <a class="nav-link" href="operasional.html"><i class="fa fa-cogs me-2"></i>Operasional</a>
+			<a class="nav-link" href="laporan.html"><i class="fa fa-file-lines me-2"></i>Laporan</a>
+			<a class="nav-link text-danger" href="logout.html"><i class="fa fa-right-from-bracket me-2"></i>Logout</a>
+		</nav>
+
+	</div>
+
+	<!-- Main -->
+	<div class="main">
+
+		<!-- HEADER -->
+		<div class="dashboard-header">
+			<div class="header-left">
+				<div class="dashboard-title">
+					<i class="fa-solid fa-bars"></i>
+				</div>
+			</div>
+			<div class="header-right">
+				<div class="notification">
+					<i class="fa-solid fa-bell"></i>
+					<span>3</span>
+				</div>
+				<div class="d-flex align-items-center ms-3">
+					<div class="text-end me-2">
+						<div class="fw-bold">Julia Nabella</div>
+						<small class="text-muted d-block" style="margin-top: -4px;">Admin</small>
+					</div>
+					<i class="fa-solid fa-circle-user fa-2x text-success"></i>
+				</div>
+			</div>
+		</div>
+
+		<div class="content-box">
+
+			<div class="booking-header mb-4">
+                <h3 class="booking-title">
+                    <i class="fa fa-clipboard-check me-2 text-success"></i>
+                    Proses LaundryKu
+                </h3>
+                <p class="booking-subtitle">Kelola proses laundry dengan efisien</p>
+            </div>
+            <div class="dashboard-box mb-4">
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="modern-card status-card" onclick="lihatStatus('Booking Baru')" style="cursor:pointer">
+                <div class="card-icon green"><i class="fa fa-calendar-plus"></i></div>
+                <div class="card-content">
+                    <h6>Pesanan Baru</h6>
+                    <h2 id="bookingBaruCount" class="text-success">0</h2>
+                    <p>Pesanan baru masuk, belum diproses</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="modern-card status-card" onclick="lihatStatus('Menunggu Penjemputan')" style="cursor:pointer">
+                <div class="card-icon orange"><i class="fa fa-truck"></i></div>
+                <div class="card-content">
+                    <h6>Menunggu Penjemputan</h6>
+                    <h2 id="jemputCount" class="text-warning">0</h2>
+                    <p>Menunggu driver/kurir menjemput</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="modern-card status-card" onclick="lihatStatus('Diterima')" style="cursor:pointer">
+                <div class="card-icon blue"><i class="fa fa-box"></i></div>
+                <div class="card-content">
+                    <h6>Diterima</h6>
+                    <h2 id="diterimaCount" class="text-primary">0</h2>
+                    <p>Pakaian telah diterima di laundry</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="modern-card status-card" onclick="lihatStatus('Proses Pencucian')" style="cursor:pointer">
+                <div class="card-icon blue"><i class="fa fa-droplet"></i></div>
+                <div class="card-content">
+                    <h6>Proses Pencucian</h6>
+                    <h2 id="cuciCount" class="text-info">0</h2>
+                    <p>Pakaian sedang dicuci</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="modern-card status-card" onclick="lihatStatus('Proses Pengeringan')" style="cursor:pointer">
+                <div class="card-icon orange"><i class="fa fa-sun"></i></div>
+                <div class="card-content">
+                    <h6>Proses Pengeringan</h6>
+                    <h2 id="keringCount" class="text-info">0</h2>
+                    <p>Pakaian sedang dikeringkan</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="modern-card status-card" onclick="lihatStatus('Proses Setrika')" style="cursor:pointer">
+                <div class="card-icon orange"><i class="fa fa-shirt"></i></div>
+                <div class="card-content">
+                    <h6>Proses Setrika</h6>
+                    <h2 id="setrikaCount" class="text-info">0</h2>
+                    <p>Pakaian sedang disetrika</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="modern-card status-card" onclick="lihatStatus('Proses Packing')" style="cursor:pointer">
+                <div class="card-icon purple"><i class="fa fa-box-open"></i></div>
+                <div class="card-content">
+                    <h6>Proses Packing</h6>
+                    <h2 id="packingCount" class="text-info">0</h2>
+                    <p>Pakaian sedang dipacking untuk pengembalian</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="modern-card status-card" onclick="lihatStatus('Selesai')" style="cursor:pointer">
+                <div class="card-icon green"><i class="fa fa-check-circle"></i></div>
+                <div class="card-content">
+                    <h6>Selesai</h6>
+                    <h2 id="selesaiCount" class="text-success">0</h2>
+                    <p>Semua proses internal selesai</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="modern-card status-card" onclick="lihatStatus('Siap Diambil')" style="cursor:pointer">
+                <div class="card-icon green"><i class="fa fa-hand-holding-box"></i></div>
+                <div class="card-content">
+                    <h6>Siap Diambil</h6>
+                    <h2 id="siapCount" class="text-success">0</h2>
+                    <p>Siap diambil pelanggan di outlet</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="modern-card status-card" onclick="lihatStatus('Dalam Pengantaran')" style="cursor:pointer">
+                <div class="card-icon blue"><i class="fa fa-truck-fast"></i></div>
+                <div class="card-content">
+                    <h6>Dalam Pengantaran</h6>
+                    <h2 id="antarCount" class="text-primary">0</h2>
+                    <p>Sedang dikirim ke alamat pelanggan</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="modern-card status-card" onclick="lihatStatus('Sudah Diambil/Diterima')" style="cursor:pointer">
+                <div class="card-icon green"><i class="fa fa-user-check"></i></div>
+                <div class="card-content">
+                    <h6>Sudah Diambil</h6>
+                    <h2 id="ambilCount" class="text-success">0</h2>
+                    <p>Pelanggan telah menerima pesanan</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="modern-card status-card" onclick="lihatStatus('Dibatalkan')" style="cursor:pointer">
+                <div class="card-icon red"><i class="fa fa-ban"></i></div>
+                <div class="card-content">
+                    <h6>Dibatalkan</h6>
+                    <h2 id="batalCount" class="text-danger">0</h2>
+                    <p>Pesanan dibatalkan; perlu follow-up refund jika ada</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="content-box mb-3">
+    <div class="box-header">
+        <h4 id="judulFilter">Detail Status</h4>
+    </div>
+    <div class="table-responsive-box">
+        <table class="table table-striped table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>Nama</th>
+                    <th>Layanan</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="hasilFilter"></tbody>
+        </table>
+    </div>
+</div>
+			<!-- Status Table -->
+			<!-- Tabel untuk mengelola definisi status telah dihapus sesuai permintaan -->
+
+		</div>
+
+	</div>
+
+	<!-- Modal Tambah/Edit Status -->
+	<!-- Modal untuk menambah/mengedit status telah dihapus sesuai permintaan -->
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+		// Initial status list
+		// Fungsi-fungsi terkait pengelolaan status (renderTable, cariStatus, openModalAdd, editStatus, simpanStatus, hapusStatus) telah dihapus
+
+        function hitungStatusLaundry() {
+            let bookings = JSON.parse(localStorage.getItem("bookings"));
+
+            // Jika data masih kosong, kita isi dengan 10 data contoh agar tidak muncul angka 0
+            if (!bookings || bookings.length === 0) {
+                bookings = [
+                    { nama: "Budi Santoso", layanan: "Cuci Kering", berat: 5, statusLaundry: "Pesanan Baru" },
+                    { nama: "Siti Aisyah", layanan: "Cuci Kering", berat: 3, statusLaundry: "Diterima" },
+                    { nama: "Ahmad Wijaya", layanan: "Cuci Setrika", berat: 4, statusLaundry: "Pesanan Baru" },
+                    { nama: "Nur Hidayah", layanan: "Setrika Saja", berat: 6, statusLaundry: "Pesanan Baru" },
+                    { nama: "Rini Kusuma", layanan: "Cuci Kering", berat: 2, statusLaundry: "Dibatalkan" },
+                    { nama: "Hendra Suryanto", layanan: "Cuci Setrika", berat: 7, statusLaundry: "Pesanan Baru" },
+                    { nama: "Dewi Lestari", layanan: "Cuci Kering", berat: 4, statusLaundry: "Pesanan Baru" },
+                    { nama: "Bambang Setiawan", layanan: "Setrika Saja", berat: 5, statusLaundry: "Pesanan Baru" },
+                    { nama: "Endang Setyawan", layanan: "Cuci Setrika", berat: 3, statusLaundry: "Pesanan Baru" },
+                    { nama: "Citra Dewi", layanan: "Cuci Kering", berat: 6, statusLaundry: "Pesanan Baru" }
+                ];
+                localStorage.setItem("bookings", JSON.stringify(bookings));
+            }
+            
+            const counts = {
+                "Pesanan Baru": 0,
+                "Menunggu Penjemputan": 0,
+                "Diterima": 0,
+                "Proses Pencucian": 0,
+                "Proses Pengeringan": 0,
+                "Proses Setrika": 0,
+                "Proses Packing": 0,
+                "Selesai": 0,
+                "Siap Diambil": 0,
+                "Dalam Pengantaran": 0,
+                "Sudah Diambil/Diterima": 0,
+                "Dibatalkan": 0
+            };
+
+            bookings.forEach(item => {
+                if (counts.hasOwnProperty(item.statusLaundry)) {
+                    counts[item.statusLaundry]++;
+                }
+            });
+
+            document.getElementById("bookingBaruCount").textContent = counts["Pesanan Baru"];
+            document.getElementById("jemputCount").textContent = counts["Menunggu Penjemputan"];
+            document.getElementById("diterimaCount").textContent = counts["Diterima"];
+            document.getElementById("cuciCount").textContent = counts["Proses Pencucian"];
+            document.getElementById("keringCount").textContent = counts["Proses Pengeringan"];
+            document.getElementById("setrikaCount").textContent = counts["Proses Setrika"];
+            document.getElementById("packingCount").textContent = counts["Proses Packing"];
+            document.getElementById("selesaiCount").textContent = counts["Selesai"];
+            document.getElementById("siapCount").textContent = counts["Siap Diambil"];
+            document.getElementById("antarCount").textContent = counts["Dalam Pengantaran"];
+            document.getElementById("ambilCount").textContent = counts["Sudah Diambil/Diterima"];
+            document.getElementById("batalCount").textContent = counts["Dibatalkan"];
+        }
+
+        function lihatStatus(status) {
+            const bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+            const filtered = bookings.filter(item => item.statusLaundry === status);
+            const tbody = document.getElementById("hasilFilter");
+            
+            document.getElementById("judulFilter").innerText = "Proses Laundry: " + status;
+            tbody.innerHTML = "";
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="3" class="text-center text-muted">Tidak ada data untuk status ini</td></tr>`;
+                return;
+            }
+
+            filtered.forEach(item => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${item.nama}</td>
+                    <td>${item.layanan} (${item.berat} Kg)</td>
+                    <td><span class="badge bg-primary">${item.statusLaundry}</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // Menambahkan fitur scroll otomatis ke bagian detail status
+            document.getElementById("judulFilter").scrollIntoView({ behavior: 'smooth' });
+        }
+
+        window.onload = function() {
+            hitungStatusLaundry();
+            lihatStatus('Pesanan Baru'); // Tampilkan booking baru secara default
+        };
+	</script>
+
+</body>
+
+</html>
