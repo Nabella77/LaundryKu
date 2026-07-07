@@ -882,3 +882,188 @@ body{
     border-radius:10px;
 
 }
+
+/* =========================================================
+   FINAL LAYOUT FIX - LAUNDRYKU
+   Sidebar tetap di kiri, konten di kanan, logo terkendali
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: #f5f7fb;
+    font-family: "Segoe UI", Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* SIDEBAR */
+.sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 250px !important;
+    height: 100vh !important;
+    padding: 0 !important;
+    background: #fff !important;
+    border-right: 1px solid #eaeaea;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, .04);
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 1000;
+}
+
+/* LOGO */
+.sidebar .logo {
+    width: 100%;
+    padding: 20px 18px !important;
+    margin: 0 0 8px 0 !important;
+}
+
+.sidebar .logo-brand {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+}
+
+.sidebar .logo-brand .logo-img {
+    display: block !important;
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    max-width: 48px !important;
+    max-height: 48px !important;
+    object-fit: contain !important;
+    flex: 0 0 48px !important;
+}
+
+.sidebar .logo-text {
+    min-width: 0;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #16a34a;
+}
+
+.sidebar .logo-text span {
+    display: block;
+    margin-top: 4px;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.25;
+    color: #64748b;
+}
+
+/* NAVIGASI SIDEBAR */
+.sidebar .nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 10px 18px;
+}
+
+.sidebar .nav-link {
+    display: flex !important;
+    align-items: center !important;
+    width: 100%;
+    margin: 3px 0 !important;
+    padding: 11px 12px !important;
+    border-radius: 10px;
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.sidebar .nav-link i {
+    width: 22px;
+    min-width: 22px;
+    text-align: center;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    background: #dff5e7;
+    color: #16a34a;
+}
+
+/* KONTEN UTAMA */
+.main {
+    position: relative;
+    margin-left: 250px !important;
+    width: calc(100% - 250px) !important;
+    min-width: 0;
+    min-height: 100vh;
+    padding: 12px 14px !important;
+    background: #f5f7fb;
+}
+
+/* HEADER */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Pastikan gambar umum tidak melampaui wadah.
+   Logo tetap memakai ukuran khusus di atas. */
+img {
+    max-width: 100%;
+}
+
+/* TABLET */
+@media (max-width: 991.98px) {
+    .sidebar {
+        width: 220px !important;
+    }
+
+    .main {
+        margin-left: 220px !important;
+        width: calc(100% - 220px) !important;
+    }
+
+    .sidebar .logo-text {
+        font-size: 18px;
+    }
+
+    .sidebar .logo-text span {
+        font-size: 10px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 767.98px) {
+    .sidebar {
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        max-height: none;
+        border-right: 0;
+        border-bottom: 1px solid #eaeaea;
+    }
+
+    .main {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding: 12px !important;
+        zoom: 1 !important;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
